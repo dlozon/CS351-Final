@@ -1,6 +1,11 @@
 This needs some things setup in order for this to function, and I'm not
 particularly sure how the libraries in the virtual environment will work
 
+Python Libaries Needed
+-boto3
+-flask
+-bcrypt
+
 So basic structure:
 -python with flask libraries
 -script files, routes.py has the http routes to render the pages
