@@ -2,6 +2,7 @@ from flask import Flask, make_response, render_template, redirect, url_for, requ
 import boto3
 from botocore.config import Config
 import bcrypt
+from waitress import serve
 
 # client = boto3.client('dynamodb')
 app = Flask(__name__)
@@ -146,4 +147,6 @@ def say_hello(name):
 	return render_template('hello.html', name=name)
 	
 if __name__ == "__main__":
-	app.run(debug=True)
+	# app.run(debug=True)
+	# For production, use:
+	serve(app, host='0.0.0.0', port=80)
