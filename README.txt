@@ -5,6 +5,7 @@ Python Libaries Needed
 -boto3
 -flask
 -bcrypt
+-waitress
 
 So basic structure:
 -python with flask libraries
