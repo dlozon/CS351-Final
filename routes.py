@@ -147,6 +147,6 @@ def say_hello(name):
 	return render_template('hello.html', name=name)
 	
 if __name__ == "__main__":
-	# app.run(debug=True)
+	app.run(debug=True)
 	# For production, use:
-	serve(app, host='0.0.0.0', port=80)
+	# serve(app, host='0.0.0.0', port=80)
