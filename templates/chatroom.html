@@ -64,70 +64,26 @@
 <div class="main">
     <div class="container ">
         <div class="chat-log">
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
-            <div class="chat-log__item">
-                <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-                <div class="chat-log__message">Yo man</div>
-            </div>
-            <div class="chat-log__item chat-log__item--own">
-                <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-                <div class="chat-log__message">BRB</div>
-            </div>
+
+            {% for data in messages %}
+                {% if data['username']['S'] == username %}
+                    <div class="chat-log__item chat-log__item--own">
+                {% else %}
+                    <div class="chat-log__item">
+                {% endif %}
+                        <h3 class="chat-log__author">{{ data['username']['S'] }}  <small>{{ formatedDate(data['time_sent']['N']) }}</small></h3>
+                        <div class="chat-log__message">{{ data['message']['S'] }}</div>
+                    </div>
+            {% endfor %}
         </div>
     </div>
+    {% if username %}
     <div class="chat-form">
         <div class="container ">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="chatroom" method="post">
                 <div class="row">
                     <div class="col-sm-10 col-xs-8">
-                        <input type="text" class="form-control" id="" placeholder="Message" />
+                        <input type="text" class="form-control" id="" placeholder="Message" name="message"/>
                     </div>
                     <div class="col-sm-2 col-xs-4">
                         <button type="submit" class="btn btn-success btn-block">Send</button>
@@ -136,5 +92,6 @@
             </form>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
